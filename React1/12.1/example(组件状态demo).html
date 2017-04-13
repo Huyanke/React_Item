@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="../src/react.js"></script>
+    <script src="../src/react-dom.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <script src="../src/jquery-1.11.0.js"></script>
+    <script src="../src/remarkable.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+      // To get started with this tutorial running your own code, simply remove
+      // the script tag loading scripts/example.js and start writing code here.
+      var FirstApp = React.createClass({
+        getInitialState: function() {
+          return {
+            enable: false
+          }
+        },
+        handleClick: function() {
+          this.setState({enable: !this.state.enable})
+        },
+        render: function() {
+          return (
+            <div>
+              <input type="text" disabled={this.state.enable}/>
+              <button onClick={this.handleClick}>禁用</button>
+            </div>
+          )
+        }
+      })
+
+      ReactDOM.render(
+        <FirstApp />,
+        document.getElementById('content')
+      )
+    </script>
+
+  </body>
+</html>

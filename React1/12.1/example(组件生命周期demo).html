@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="../src/react.js"></script>
+    <script src="../src/react-dom.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <script src="../src/jquery-1.11.0.js"></script>
+    <script src="../src/remarkable.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+      // To get started with this tutorial running your own code, simply remove
+      // the script tag loading scripts/example.js and start writing code here.
+      var FirstApp = React.createClass({
+        getInitialState: function() {
+          return {
+            opacity: 1
+          }
+        },
+        componentDidMount: function() {
+          this.timer = setInterval(function() {
+            var opacity = this.state.opacity;
+                opacity -= .05;
+            if(opacity < 0.1){
+              opacity = 1;
+            }
+            this.setState({
+              opacity: opacity
+            })
+          }.bind(this), 100)
+        },
+        render: function() {
+          return (
+            <div>
+              <ul style={{opacity: this.state.opacity}}>
+               {
+                this.props.arr.map(function(arrs) {
+                  return (<li key={arrs.id}>{arrs.name}</li>)
+                })
+                }
+              </ul>
+            </div>
+          )
+        }
+      })
+    const arr = [
+      {name:'Janko',love:'Basketball',id:'1'},
+      {name:'Hu',love:'Football',id:'2'},
+      {name:'H',love:'ball',id:'3'}
+    ]
+      ReactDOM.render(
+        <FirstApp arr={arr}/>,
+        document.getElementById('content')
+      )
+    </script>
+
+  </body>
+</html>

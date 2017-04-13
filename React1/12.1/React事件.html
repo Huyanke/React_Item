@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="../src/react.js"></script>
+    <script src="../src/react-dom.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <script src="../src/jquery-1.11.0.js"></script>
+    <script src="../src/remarkable.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+      // To get started with this tutorial running your own code, simply remove
+      // the script tag loading scripts/example.js and start writing code here.
+
+      var Message = React.createClass({
+        getInitialState: function() {
+          return {
+            value: 'Janko'
+          }
+        },
+        handleClick: function() {
+          this.setState({value: '胡琰珂'})
+        },
+        render: function() {
+          var value = this.state.value
+          return (
+            <div>
+              <button onClick={this.handleClick}>点我</button>
+              <h2>{value}</h2>
+            </div>
+          )
+        }
+      })
+      ReactDOM.render(
+        <Message />,
+        document.getElementById('content')
+      )
+    </script>
+
+  </body>
+</html>

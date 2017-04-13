@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="../src/react.js"></script>
+    <script src="../src/react-dom.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <script src="../src/jquery-1.11.0.js"></script>
+    <script src="../src/remarkable.js"></script>
+    <link rel="stylesheet" href="css/tab.css">
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+      // To get started with this tutorial running your own code, simply remove
+      // the script tag loading scripts/example.js and start writing code here.
+      var data = [
+        {name: 'Red', value: 'red'},
+        {name: 'Blue', value: 'blue'},
+        {name: 'Yellow', value: 'yellow'},
+        {name: 'Green', value: 'green'},
+        {name: 'White', value: 'White'}
+      ];
+      var FirstApp = React.createClass({
+          getInitialState: function() {
+            return {
+              selected: this.props.selected
+            }
+          },
+          handleOnclick: function(evt) {
+            this.setState({'selected': evt.target.getAttribute('data-value')})
+          },
+          render: function() {
+            var tabs = this.props.data.map(function(item, index) {
+            var selected = item.value == this.state.selected ? 'selected': '' ;
+            return <li
+              data-value={item.value}
+              className={selected}
+              onClick={this.handleOnclick}
+              key={index}
+              >
+              {item.name}
+              </li>
+          },this)
+
+          return(
+            <div className="tab-selector">
+              <label>{this.props.label}</label>
+              <ul>
+                {tabs}
+              </ul>
+            </div>
+            )
+        },
+      })
+
+      ReactDOM.render(
+        <FirstApp  data={data} label={'Color'} selected={null}/>,
+        document.getElementById('content')
+      )
+    </script>
+
+  </body>
+</html>
